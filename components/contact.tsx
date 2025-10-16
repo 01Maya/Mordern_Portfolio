@@ -105,7 +105,7 @@ export default function Contact() {
           />
         </div>
         <div className="flex justify-center mt-4">
-          <SubmitBtn loading={loading} />
+          <SubmitBtn/>
         </div>
       </form>
     </motion.section>
