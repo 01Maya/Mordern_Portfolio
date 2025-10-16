@@ -48,9 +48,9 @@ Visitors can explore my projects, skills, experience, and get in touch directly 
 
 ---
 
-## 📸 Preview
+## 📸 Screenshot
 
-![Home Section](screenshots/home.png)  
+![Image](https://github.com/user-attachments/assets/163a2065-db85-442b-a52b-21f8180473fa) 
 
 
 ---
