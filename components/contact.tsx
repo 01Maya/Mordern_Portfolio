@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
-import SubmitBtn from "./submit-btn";
 import toast, { Toaster } from "react-hot-toast";
+import { FaPaperPlane } from "react-icons/fa"; // ✅ For icon inside button
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
@@ -18,16 +18,22 @@ export default function Contact() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // 🔑 Add required Web3Forms fields
-    formData.append("access_key", "YOUR_PUBLIC_KEY_HERE"); // replace with your key
+    // ✅ Required Web3Forms fields
+    formData.append("access_key", "YOUR_PUBLIC_ACCESS_KEY_HERE");
     formData.append("subject", "New Contact Form Submission");
     formData.append("from_name", formData.get("name") as string);
     formData.append("replyto", formData.get("email") as string);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const endpoint =
+        process.env.NODE_ENV === "development"
+          ? "https://api.allorigins.win/raw?url=https://api.web3forms.com/submit"
+          : "https://api.web3forms.com/submit";
+
+      const res = await fetch(endpoint, {
         method: "POST",
-        body: formData, // Must use FormData
+        body: formData,
+        headers: { Accept: "application/json" },
       });
 
       const json = await res.json();
@@ -36,12 +42,12 @@ export default function Contact() {
         toast.success("✅ Message sent successfully!");
         form.reset();
       } else {
-        console.log("Web3Forms response:", json); // debug info
-        toast.error(json.message || "❌ Something went wrong. Check console.");
+        console.log("Web3Forms response:", json);
+        toast.error(json.message || "❌ Something went wrong.");
       }
     } catch (err) {
       console.error("Fetch error:", err);
-      toast.error("❌ Error sending message. Check console.");
+      toast.error("❌ Network error. Try again later.");
     } finally {
       setLoading(false);
     }
@@ -104,8 +110,26 @@ export default function Contact() {
             required
           />
         </div>
-        <div className="flex justify-center mt-4">
-          <SubmitBtn/>
+  
+        {/* ✅ Submit button */}
+        <div className="flex justify-center mt-6">
+          <button
+            type="submit"
+            disabled={loading}
+            className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] 
+                       bg-gray-900 text-white rounded-full outline-none transition-all 
+                       focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 
+                       dark:bg-white dark:bg-opacity-10 disabled:scale-100 disabled:bg-opacity-65"
+          >
+            {loading ? (
+              <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+            ) : (
+              <>
+                Submit{" "}
+                <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </>
+            )}
+          </button>
         </div>
       </form>
     </motion.section>
