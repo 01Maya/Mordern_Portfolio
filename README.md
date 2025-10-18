@@ -19,8 +19,7 @@ Visitors can explore my projects, skills, experience, and get in touch directly 
 - **📱 Fully Responsive Design:** Optimized for mobile, tablet, and desktop devices.  
 - **🎨 Modern UI/UX:** Minimalist aesthetic with clear typography and gradients.  
 - **💨 Smooth Animations:** Subtle fade, scale, and motion effects on scroll and hover.  
-- **🖱️ Interactive Navigation:** Navbar highlights active sections with smooth scroll.  
-- **⚡ Optimized Performance:** Built with Next.js SSR & SSG for fast load times.  
+- **🖱️ Interactive Navigation:** Navbar highlights active sections with smooth scroll.    
 - **💡 Interactive Projects:** Cards with hover effects, tilt, and smooth transitions.  
 
 ---
