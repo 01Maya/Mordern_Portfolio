@@ -5,7 +5,7 @@
   "description": "[![Watch tutorial here](https://img.youtube.com/vi/sUKptmUVIBM/0.jpg)](https://youtu.be/sUKptmUVIBM)",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "next.config.js",
   "directories": {
     "lib": "lib"
